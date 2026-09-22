@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jev Plays Tetris</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='1' width='6' height='6' fill='%233fd6f0'/><rect x='9' y='1' width='6' height='6' fill='%23f5d547'/><rect x='1' y='9' width='6' height='6' fill='%23b565f2'/><rect x='9' y='9' width='6' height='6' fill='%23f26b6b'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Jev Plays Tetris</h1>
+  </header>
+
+  <main class="layout">
+    <section class="inspector-col">
+      <details class="card" id="inspector" open>
+        <summary>Last request and response</summary>
+        <div class="inspector-grid">
+          <div>
+            <div class="read-label">Request</div>
+            <pre id="reqJson">–</pre>
+          </div>
+          <div>
+            <div class="read-label">Response</div>
+            <pre id="resJson">–</pre>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="board-col">
+      <div class="board-wrap">
+        <canvas id="board" width="300" height="600" aria-label="Tetris board"></canvas>
+        <div id="overlay" class="overlay hidden"></div>
+      </div>
+      <div class="status-row">
+        <span id="status" class="status">Press Start.</span>
+      </div>
+      <div class="controls">
+        <button id="start" class="primary">Start</button>
+        <button id="pause" disabled>Pause</button>
+        <button id="reset">Reset</button>
+        <label class="speed">Speed <input id="speed" type="range" min="1" max="10" value="6" /></label>
+      </div>
+      <div id="error" class="error hidden" role="alert"></div>
+    </section>
+
+    <section class="side-col">
+      <div class="card stats">
+        <div class="stat"><span class="label">Score</span><span id="score">0</span></div>
+        <div class="stat"><span class="label">Lines</span><span id="lines">0</span></div>
+        <div class="stat"><span class="label">Level</span><span id="level">1</span></div>
+        <div class="stat"><span class="label">Pieces</span><span id="pieces">0</span></div>
+        <div class="stat"><span class="label">Next</span><canvas id="next" width="80" height="50"></canvas></div>
+        <div class="stat"><span class="label">Calls</span><span id="calls">0</span></div>
+        <div class="stat"><span class="label">Avg latency</span><span id="latency">–</span></div>
+        <div class="stat"><span class="label">Input tokens</span><span id="tokens">0</span></div>
+        <div class="stat"><span class="label">Est. cost</span><span id="cost">$0.0000</span></div>
+        <div class="stat"><span class="label">Agrees w/ heuristic</span><span id="agree">–</span></div>
+      </div>
+
+      <div class="card" id="decision">
+        <h2 id="decisionTitle">Move</h2>
+        <p id="chosen" class="muted">No move yet.</p>
+        <div class="bar-list" id="alternatives"></div>
+      </div>
+
+      <div class="card" id="reads">
+        <h2>Board</h2>
+        <div class="read">
+          <div class="read-label">Strategy</div>
+          <div class="bar-list" id="strategy"></div>
+        </div>
+        <div class="read">
+          <div class="read-label">Board health <span id="healthValue" class="muted"></span></div>
+          <div class="gauge"><div id="healthFill" class="gauge-fill"></div></div>
+          <div id="healthLegend" class="gauge-legend"></div>
+        </div>
+        <div class="read">
+          <div class="read-label">Next piece has a clean spot</div>
+          <div class="bar"><div id="nextFitFill" class="bar-fill noul"></div><span id="nextFitValue" class="bar-value"></span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

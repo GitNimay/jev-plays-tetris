@@ -1,0 +1,16 @@
+{
+  "name": "jev-tetris",
+  "version": "1.0.0",
+  "description": "Demo: TypeSafe's Jev model plays Tetris. Code enumerates placements, Jev picks one.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
